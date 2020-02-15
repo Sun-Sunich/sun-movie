@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppComponent} from './app.component';
+import {SunMovieComponent} from './sun-movie.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HeaderComponent} from './header/header.component';
 import {MainComponent} from './main/main.component';
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent,
+        SunMovieComponent,
         HeaderComponent,
         MainComponent,
         FooterComponent,
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
         )
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [SunMovieComponent]
 })
 export class AppModule {
 }
