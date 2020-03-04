@@ -1,9 +1,10 @@
+@import "src/styles";
+
 .sun-movie{
+    @include container;
     display: flex;
     height: 100vh;
     flex-direction: column;
-    max-width: 1200px;
-    padding: 0 24px;
     &__footer{
         margin-top: auto;
     }

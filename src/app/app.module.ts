@@ -11,6 +11,7 @@ import {PeopleComponent} from './main/people/people.component';
 import {LandingComponent} from './main/landing/landing.component';
 import {MovieComponent} from './main/movies/movie/movie.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { IconComponent } from './icon/icon.component';
 
 const appRoutes: Routes = [
     {
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
         PeopleComponent,
         LandingComponent,
         MovieComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        IconComponent
     ],
     imports: [
         BrowserModule,
