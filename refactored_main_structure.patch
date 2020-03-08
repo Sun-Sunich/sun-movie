@@ -1,0 +1,1028 @@
+Index: src/app/app.component.html
+===================================================================
+--- src/app/app.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/app.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
+@@ -1,4 +0,0 @@
+-<a routerLink="/" routerLinkActive="active">Main</a>
+-<a routerLink="/movies" routerLinkActive="active">Movies</a>
+-<a routerLink="/people" routerLinkActive="active">People</a>
+-<router-outlet></router-outlet>
+Index: src/app/app.component.spec.ts
+===================================================================
+--- src/app/app.component.spec.ts	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/app.component.spec.ts	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
+@@ -1,31 +0,0 @@
+-import { TestBed, async } from '@angular/core/testing';
+-import { AppComponent } from './app.component';
+-
+-describe('AppComponent', () => {
+-  beforeEach(async(() => {
+-    TestBed.configureTestingModule({
+-      declarations: [
+-        AppComponent
+-      ],
+-    }).compileComponents();
+-  }));
+-
+-  it('should create the app', () => {
+-    const fixture = TestBed.createComponent(AppComponent);
+-    const app = fixture.debugElement.componentInstance;
+-    expect(app).toBeTruthy();
+-  });
+-
+-  it(`should have as title 'moviePortal'`, () => {
+-    const fixture = TestBed.createComponent(AppComponent);
+-    const app = fixture.debugElement.componentInstance;
+-    expect(app.title).toEqual('moviePortal');
+-  });
+-
+-  it('should render title in a h1 tag', () => {
+-    const fixture = TestBed.createComponent(AppComponent);
+-    fixture.detectChanges();
+-    const compiled = fixture.debugElement.nativeElement;
+-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to moviePortal!');
+-  });
+-});
+Index: src/app/app.component.ts
+===================================================================
+--- src/app/app.component.ts	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/app.component.ts	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
+@@ -1,10 +0,0 @@
+-import { Component } from '@angular/core';
+-
+-@Component({
+-  selector: 'app-root',
+-  templateUrl: './app.component.html',
+-  styleUrls: ['./app.component.scss']
+-})
+-export class AppComponent {
+-  title = 'moviePortal';
+-}
+Index: src/app/sun-movie.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/sun-movie.component.ts	(date 1579817844115)
++++ src/app/sun-movie.component.ts	(date 1579817844115)
+@@ -0,0 +1,10 @@
++import { Component } from '@angular/core';
++
++@Component({
++  selector: 'app-root',
++  templateUrl: './sun-movie.component.html',
++  styleUrls: ['./sun-movie.component.scss']
++})
++export class SunMovieComponent {
++  title = 'moviePortal';
++}
+Index: src/app/app.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/app.module.ts	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/app.module.ts	(date 1579817844108)
+@@ -1,7 +1,7 @@
+ import {BrowserModule} from '@angular/platform-browser';
+ import {NgModule} from '@angular/core';
+ 
+-import {AppComponent} from './app.component';
++import {SunMovieComponent} from './sun-movie.component';
+ import {RouterModule, Routes} from '@angular/router';
+ import {HeaderComponent} from './header/header.component';
+ import {MainComponent} from './main/main.component';
+@@ -47,7 +47,7 @@
+ 
+ @NgModule({
+     declarations: [
+-        AppComponent,
++        SunMovieComponent,
+         HeaderComponent,
+         MainComponent,
+         FooterComponent,
+@@ -65,7 +65,7 @@
+         )
+     ],
+     providers: [],
+-    bootstrap: [AppComponent]
++    bootstrap: [SunMovieComponent]
+ })
+ export class AppModule {
+ }
+Index: patches
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- patches	(date 1579817844112)
++++ patches	(date 1579817844112)
+@@ -0,0 +1,798 @@
++Index: .editorconfig
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .editorconfig	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ .editorconfig	(date 1579812940779)
++@@ -4,7 +4,7 @@
++ [*]
++ charset = utf-8
++ indent_style = space
++-indent_size = 2
+++indent_size = 4
++ insert_final_newline = true
++ trim_trailing_whitespace = true
++
++Index: angular.json
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- angular.json	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ angular.json	(date 1579813125965)
++@@ -1,136 +1,141 @@
++ {
++-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
++-  "version": 1,
++-  "newProjectRoot": "projects",
++-  "projects": {
++-    "moviePortal": {
++-      "root": "",
++-      "sourceRoot": "src",
++-      "projectType": "application",
++-      "prefix": "app",
++-      "schematics": {},
++-      "architect": {
++-        "build": {
++-          "builder": "@angular-devkit/build-angular:browser",
++-          "options": {
++-            "outputPath": "dist/moviePortal",
++-            "index": "src/index.html",
++-            "main": "src/main.ts",
++-            "polyfills": "src/polyfills.ts",
++-            "tsConfig": "src/tsconfig.app.json",
++-            "assets": [
++-              "src/favicon.ico",
++-              "src/assets"
++-            ],
++-            "styles": [
++-              "src/styles.css"
++-            ],
++-            "scripts": [],
++-            "es5BrowserSupport": true
++-          },
++-          "configurations": {
++-            "production": {
++-              "fileReplacements": [
++-                {
++-                  "replace": "src/environments/environment.ts",
++-                  "with": "src/environments/environment.prod.ts"
++-                }
++-              ],
++-              "optimization": true,
++-              "outputHashing": "all",
++-              "sourceMap": false,
++-              "extractCss": true,
++-              "namedChunks": false,
++-              "aot": true,
++-              "extractLicenses": true,
++-              "vendorChunk": false,
++-              "buildOptimizer": true,
++-              "budgets": [
++-                {
++-                  "type": "initial",
++-                  "maximumWarning": "2mb",
++-                  "maximumError": "5mb"
++-                }
++-              ]
++-            }
++-          }
++-        },
++-        "serve": {
++-          "builder": "@angular-devkit/build-angular:dev-server",
++-          "options": {
++-            "browserTarget": "moviePortal:build"
++-          },
++-          "configurations": {
++-            "production": {
++-              "browserTarget": "moviePortal:build:production"
++-            }
++-          }
++-        },
++-        "extract-i18n": {
++-          "builder": "@angular-devkit/build-angular:extract-i18n",
++-          "options": {
++-            "browserTarget": "moviePortal:build"
++-          }
++-        },
++-        "test": {
++-          "builder": "@angular-devkit/build-angular:karma",
++-          "options": {
++-            "main": "src/test.ts",
++-            "polyfills": "src/polyfills.ts",
++-            "tsConfig": "src/tsconfig.spec.json",
++-            "karmaConfig": "src/karma.conf.js",
++-            "styles": [
++-              "src/styles.css"
++-            ],
++-            "scripts": [],
++-            "assets": [
++-              "src/favicon.ico",
++-              "src/assets"
++-            ]
++-          }
++-        },
++-        "lint": {
++-          "builder": "@angular-devkit/build-angular:tslint",
++-          "options": {
++-            "tsConfig": [
++-              "src/tsconfig.app.json",
++-              "src/tsconfig.spec.json"
++-            ],
++-            "exclude": [
++-              "**/node_modules/**"
++-            ]
++-          }
++-        }
++-      }
++-    },
++-    "moviePortal-e2e": {
++-      "root": "e2e/",
++-      "projectType": "application",
++-      "prefix": "",
++-      "architect": {
++-        "e2e": {
++-          "builder": "@angular-devkit/build-angular:protractor",
++-          "options": {
++-            "protractorConfig": "e2e/protractor.conf.js",
++-            "devServerTarget": "moviePortal:serve"
++-          },
++-          "configurations": {
++-            "production": {
++-              "devServerTarget": "moviePortal:serve:production"
++-            }
++-          }
++-        },
++-        "lint": {
++-          "builder": "@angular-devkit/build-angular:tslint",
++-          "options": {
++-            "tsConfig": "e2e/tsconfig.e2e.json",
++-            "exclude": [
++-              "**/node_modules/**"
++-            ]
++-          }
++-        }
++-      }
++-    }
++-  },
++-  "defaultProject": "moviePortal"
++-}
++\ No newline at end of file
+++    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+++    "version": 1,
+++    "newProjectRoot": "projects",
+++    "projects": {
+++        "moviePortal": {
+++            "root": "",
+++            "sourceRoot": "src",
+++            "projectType": "application",
+++            "prefix": "app",
+++            "schematics": {},
+++            "architect": {
+++                "build": {
+++                    "builder": "@angular-devkit/build-angular:browser",
+++                    "options": {
+++                        "outputPath": "dist/moviePortal",
+++                        "index": "src/index.html",
+++                        "main": "src/main.ts",
+++                        "polyfills": "src/polyfills.ts",
+++                        "tsConfig": "src/tsconfig.app.json",
+++                        "assets": [
+++                            "src/favicon.ico",
+++                            "src/assets"
+++                        ],
+++                        "styles": [
+++                            "src/styles.scss"
+++                        ],
+++                        "scripts": [],
+++                        "es5BrowserSupport": true
+++                    },
+++                    "configurations": {
+++                        "production": {
+++                            "fileReplacements": [
+++                                {
+++                                    "replace": "src/environments/environment.ts",
+++                                    "with": "src/environments/environment.prod.ts"
+++                                }
+++                            ],
+++                            "optimization": true,
+++                            "outputHashing": "all",
+++                            "sourceMap": false,
+++                            "extractCss": true,
+++                            "namedChunks": false,
+++                            "aot": true,
+++                            "extractLicenses": true,
+++                            "vendorChunk": false,
+++                            "buildOptimizer": true,
+++                            "budgets": [
+++                                {
+++                                    "type": "initial",
+++                                    "maximumWarning": "2mb",
+++                                    "maximumError": "5mb"
+++                                }
+++                            ]
+++                        }
+++                    }
+++                },
+++                "serve": {
+++                    "builder": "@angular-devkit/build-angular:dev-server",
+++                    "options": {
+++                        "browserTarget": "moviePortal:build"
+++                    },
+++                    "configurations": {
+++                        "production": {
+++                            "browserTarget": "moviePortal:build:production"
+++                        }
+++                    }
+++                },
+++                "extract-i18n": {
+++                    "builder": "@angular-devkit/build-angular:extract-i18n",
+++                    "options": {
+++                        "browserTarget": "moviePortal:build"
+++                    }
+++                },
+++                "test": {
+++                    "builder": "@angular-devkit/build-angular:karma",
+++                    "options": {
+++                        "main": "src/test.ts",
+++                        "polyfills": "src/polyfills.ts",
+++                        "tsConfig": "src/tsconfig.spec.json",
+++                        "karmaConfig": "src/karma.conf.js",
+++                        "styles": [
+++                            "src/styles.scss"
+++                        ],
+++                        "scripts": [],
+++                        "assets": [
+++                            "src/favicon.ico",
+++                            "src/assets"
+++                        ]
+++                    }
+++                },
+++                "lint": {
+++                    "builder": "@angular-devkit/build-angular:tslint",
+++                    "options": {
+++                        "tsConfig": [
+++                            "src/tsconfig.app.json",
+++                            "src/tsconfig.spec.json"
+++                        ],
+++                        "exclude": [
+++                            "**/node_modules/**"
+++                        ]
+++                    }
+++                }
+++            }
+++        },
+++        "moviePortal-e2e": {
+++            "root": "e2e/",
+++            "projectType": "application",
+++            "prefix": "",
+++            "architect": {
+++                "e2e": {
+++                    "builder": "@angular-devkit/build-angular:protractor",
+++                    "options": {
+++                        "protractorConfig": "e2e/protractor.conf.js",
+++                        "devServerTarget": "moviePortal:serve"
+++                    },
+++                    "configurations": {
+++                        "production": {
+++                            "devServerTarget": "moviePortal:serve:production"
+++                        }
+++                    }
+++                },
+++                "lint": {
+++                    "builder": "@angular-devkit/build-angular:tslint",
+++                    "options": {
+++                        "tsConfig": "e2e/tsconfig.e2e.json",
+++                        "exclude": [
+++                            "**/node_modules/**"
+++                        ]
+++                    }
+++                }
+++            }
+++        }
+++    },
+++    "defaultProject": "moviePortal",
+++    "schematics": {
+++        "@schematics/angular:component": {
+++            "styleext": "scss"
+++        }
+++    }
+++}
++Index: src/app/header/header.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/header/header.component.scss	(date 1579807507600)
+++++ src/app/header/header.component.scss	(date 1579807507600)
++@@ -0,0 +1,0 @@
++Index: src/app/header/header.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/header/header.component.html	(date 1579807507598)
+++++ src/app/header/header.component.html	(date 1579807507598)
++@@ -0,0 +1,3 @@
+++<p>
+++  header works!
+++</p>
++Index: src/app/header/header.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/header/header.component.ts	(date 1579808419007)
+++++ src/app/header/header.component.ts	(date 1579808419007)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-header',
+++  templateUrl: './header.component.html',
+++  styleUrls: ['./header.component.scss']
+++})
+++export class HeaderComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/app/main/main.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/main.component.scss	(date 1579807608317)
+++++ src/app/main/main.component.scss	(date 1579807608317)
++@@ -0,0 +1,0 @@
++Index: src/app/main/main.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/main.component.html	(date 1579807608316)
+++++ src/app/main/main.component.html	(date 1579807608316)
++@@ -0,0 +1,3 @@
+++<p>
+++  main works!
+++</p>
++Index: src/app/main/main.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/main.component.ts	(date 1579808418998)
+++++ src/app/main/main.component.ts	(date 1579808418998)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-main',
+++  templateUrl: './main.component.html',
+++  styleUrls: ['./main.component.scss']
+++})
+++export class MainComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/index.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/index.html	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/index.html	(date 1579807006083)
++@@ -1,6 +1,7 @@
++ <!doctype html>
++ <html lang="en">
++ <head>
+++  <base href="/">
++   <meta charset="utf-8">
++   <title>MoviePortal</title>
++   <base href="/">
++Index: src/app/footer/footer.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/footer/footer.component.scss	(date 1579807626680)
+++++ src/app/footer/footer.component.scss	(date 1579807626680)
++@@ -0,0 +1,0 @@
++Index: src/app/footer/footer.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/footer/footer.component.html	(date 1579807626679)
+++++ src/app/footer/footer.component.html	(date 1579807626679)
++@@ -0,0 +1,3 @@
+++<p>
+++  footer works!
+++</p>
++Index: src/app/footer/footer.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/footer/footer.component.ts	(date 1579808419002)
+++++ src/app/footer/footer.component.ts	(date 1579808419002)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-footer',
+++  templateUrl: './footer.component.html',
+++  styleUrls: ['./footer.component.scss']
+++})
+++export class FooterComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/styles.css
++===================================================================
++--- src/styles.css	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/styles.scss	(date 1579803394229)
++Index: src/app/main/movies/movies.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movies.component.scss	(date 1579807698401)
+++++ src/app/main/movies/movies.component.scss	(date 1579807698401)
++@@ -0,0 +1,0 @@
++Index: src/app/main/movies/movies.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movies.component.html	(date 1579814245542)
+++++ src/app/main/movies/movies.component.html	(date 1579814245542)
++@@ -0,0 +1,5 @@
+++<p>
+++  movies works!
+++</p>
+++<router-outlet></router-outlet>
+++<app-movie></app-movie>
++Index: src/app/main/movies/movies.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movies.component.ts	(date 1579808418989)
+++++ src/app/main/movies/movies.component.ts	(date 1579808418989)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-movies',
+++  templateUrl: './movies.component.html',
+++  styleUrls: ['./movies.component.scss']
+++})
+++export class MoviesComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/app/app.component.css
++===================================================================
++--- src/app/app.component.css	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/app/app.component.scss	(date 1579803394245)
++@@ -1,0 +1,0 @@
++Index: src/app/app.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/app.component.html	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/app/app.component.html	(date 1579814456659)
++@@ -1,20 +1,2 @@
++-<!--The content below is only a placeholder and can be replaced.-->
++-<div style="text-align:center">
++-  <h1>
++-    Welcome to {{ title }}!
++-  </h1>
++-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
++-</div>
++-<h2>Here are some links to help you start: </h2>
++-<ul>
++-  <li>
++-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
++-  </li>
++-  <li>
++-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
++-  </li>
++-  <li>
++-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
++-  </li>
++-</ul>
++-
+++<p>component works</p>
+++<router-outlet></router-outlet>
++Index: src/app/main/people/people.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/people/people.component.html	(date 1579808158223)
+++++ src/app/main/people/people.component.html	(date 1579808158223)
++@@ -0,0 +1,3 @@
+++<p>
+++  people works!
+++</p>
++Index: src/app/main/people/people.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/people/people.component.scss	(date 1579808158234)
+++++ src/app/main/people/people.component.scss	(date 1579808158234)
++@@ -0,0 +1,0 @@
++Index: src/app/sun-movie.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/sun-movie.component.ts	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/app/sun-movie.component.ts	(date 1579808419011)
++@@ -3,7 +3,7 @@
++ @Component({
++   selector: 'app-root',
++   templateUrl: './app.component.html',
++-  styleUrls: ['./app.component.css']
+++  styleUrls: ['./app.component.scss']
++ })
++ export class SunMovieComponent {
++   title = 'moviePortal';
++Index: src/app/main/people/people.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/people/people.component.ts	(date 1579808158234)
+++++ src/app/main/people/people.component.ts	(date 1579808158234)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-people',
+++  templateUrl: './people.component.html',
+++  styleUrls: ['./people.component.scss']
+++})
+++export class PeopleComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/app/app.module.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/app.module.ts	(revision e07fc4cd669bb1023170643abae80b4695db1b97)
+++++ src/app/app.module.ts	(date 1579813987957)
++@@ -1,16 +1,71 @@
++-import { BrowserModule } from '@angular/platform-browser';
++-import { NgModule } from '@angular/core';
+++import {BrowserModule} from '@angular/platform-browser';
+++import {NgModule} from '@angular/core';
++
++-import { SunMovieComponent } from './app.component';
+++import {SunMovieComponent} from './app.component';
+++import {RouterModule, Routes} from '@angular/router';
+++import {HeaderComponent} from './header/header.component';
+++import {MainComponent} from './main/main.component';
+++import {FooterComponent} from './footer/footer.component';
+++import {MoviesComponent} from './main/movies/movies.component';
+++import {PeopleComponent} from './main/people/people.component';
+++import {LandingComponent} from './main/landing/landing.component';
+++import {MovieComponent} from './main/movies/movie/movie.component';
+++import { NotFoundComponent } from './not-found/not-found.component';
+++
+++const appRoutes: Routes = [
+++    {
+++        path: '',
+++        redirectTo: '/main',
+++        pathMatch: 'full',
+++        data: {title: 'LandingComponent'}
+++    },
+++    {
+++        path: 'main',
+++        component: LandingComponent,
+++        data: {title: 'LandingComponent'}
+++    },
+++    {
+++        path: 'movies',
+++        component: MoviesComponent,
+++        data: {title: 'MoviesComponent'}
+++    },
+++    {
+++        path: 'movie/:id',
+++        component: MovieComponent,
+++        data: {title: 'MovieComponent'}
+++    },
+++    {
+++        path: 'people',
+++        component: PeopleComponent,
+++        data: {title: 'PeopleComponent'}
+++    },
+++    {
+++        path: '**',
+++        component: NotFoundComponent
+++    }
+++];
++
++ @NgModule({
++-  declarations: [
++-    SunMovieComponent
++-  ],
++-  imports: [
++-    BrowserModule
++-  ],
++-  providers: [],
++-  bootstrap: [SunMovieComponent]
+++    declarations: [
+++        SunMovieComponent,
+++        HeaderComponent,
+++        MainComponent,
+++        FooterComponent,
+++        MoviesComponent,
+++        PeopleComponent,
+++        LandingComponent,
+++        MovieComponent,
+++        NotFoundComponent
+++    ],
+++    imports: [
+++        BrowserModule,
+++        RouterModule.forRoot(
+++            appRoutes,
+++            {enableTracing: true}
+++        )
+++    ],
+++    providers: [],
+++    bootstrap: [SunMovieComponent]
++ })
++-export class AppModule { }
+++export class AppModule {
+++}
++Index: src/app/main/landing/landing.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/landing/landing.component.html	(date 1579814296710)
+++++ src/app/main/landing/landing.component.html	(date 1579814296710)
++@@ -0,0 +1,1 @@
+++<p>panding works!</p>
++Index: src/app/main/landing/landing.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/landing/landing.component.scss	(date 1579812505715)
+++++ src/app/main/landing/landing.component.scss	(date 1579812505715)
++@@ -0,0 +1,0 @@
++Index: src/app/main/landing/landing.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/landing/landing.component.ts	(date 1579812505714)
+++++ src/app/main/landing/landing.component.ts	(date 1579812505714)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-landing',
+++  templateUrl: './landing.component.html',
+++  styleUrls: ['./landing.component.scss']
+++})
+++export class LandingComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/app/main/movies/movie/movie.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movie/movie.component.html	(date 1579813331685)
+++++ src/app/main/movies/movie/movie.component.html	(date 1579813331685)
++@@ -0,0 +1,3 @@
+++<p>
+++  movie works!
+++</p>
++Index: src/app/main/movies/movie/movie.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movie/movie.component.scss	(date 1579813331685)
+++++ src/app/main/movies/movie/movie.component.scss	(date 1579813331685)
++@@ -0,0 +1,0 @@
++Index: src/app/main/movies/movie/movie.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/main/movies/movie/movie.component.ts	(date 1579813331685)
+++++ src/app/main/movies/movie/movie.component.ts	(date 1579813331685)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-movie',
+++  templateUrl: './movie.component.html',
+++  styleUrls: ['./movie.component.scss']
+++})
+++export class MovieComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
++Index: src/app/not-found/not-found.component.html
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/not-found/not-found.component.html	(date 1579813976595)
+++++ src/app/not-found/not-found.component.html	(date 1579813976595)
++@@ -0,0 +1,3 @@
+++<p>
+++  not-found works!
+++</p>
++Index: src/app/not-found/not-found.component.scss
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/not-found/not-found.component.scss	(date 1579813976596)
+++++ src/app/not-found/not-found.component.scss	(date 1579813976596)
++@@ -0,0 +1,0 @@
++Index: src/app/not-found/not-found.component.ts
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- src/app/not-found/not-found.component.ts	(date 1579813976596)
+++++ src/app/not-found/not-found.component.ts	(date 1579813976596)
++@@ -0,0 +1,15 @@
+++import { Component, OnInit } from '@angular/core';
+++
+++@Component({
+++  selector: 'app-not-found',
+++  templateUrl: './not-found.component.html',
+++  styleUrls: ['./not-found.component.scss']
+++})
+++export class NotFoundComponent implements OnInit {
+++
+++  constructor() { }
+++
+++  ngOnInit() {
+++  }
+++
+++}
+Index: src/app/main/main.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/main/main.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/main/main.component.html	(date 1579817430908)
+@@ -1,3 +1,1 @@
+-<p>
+-  main works!
+-</p>
++<router-outlet></router-outlet>
+Index: src/app/main/landing/landing.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/main/landing/landing.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/main/landing/landing.component.html	(date 1579818252022)
+@@ -1,1 +1,1 @@
+-<p>panding works!</p>
++<p>landing works!</p>
+Index: src/app/footer/footer.component.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/footer/footer.component.scss	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/footer/footer.component.scss	(date 1579818135063)
+@@ -1,0 +1,4 @@
++.footer{
++    display: flex;
++    justify-content: space-between;
++}
+Index: src/app/footer/footer.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/footer/footer.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/footer/footer.component.html	(date 1579817552867)
+@@ -1,3 +1,11 @@
+-<p>
+-  footer works!
+-</p>
++<div class="footer">
++    <div class="footer__elem">
++        footer__elem
++    </div>
++    <div class="footer__elem">
++        footer__elem
++    </div>
++    <div class="footer__elem">
++        footer__elem
++    </div>
++</div>
+Index: src/styles.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/styles.scss	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/styles.scss	(date 1579818106928)
+@@ -1,1 +1,4 @@
+ /* You can add global styles to this file, and also import other style files */
++body{
++    margin: 0;
++}
+Index: src/app/app.component.scss
+===================================================================
+--- src/app/app.component.scss	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/sun-movie.component.scss	(date 1579818230086)
+@@ -1,0 +1,10 @@
++.sun-movie{
++    display: flex;
++    height: 100vh;
++    flex-direction: column;
++    max-width: 1200px;
++    padding: 0 24px;
++    &__footer{
++        margin-top: auto;
++    }
++}
+Index: src/app/sun-movie.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/sun-movie.component.html	(date 1579817925522)
++++ src/app/sun-movie.component.html	(date 1579817925522)
+@@ -0,0 +1,5 @@
++<div class="sun-movie">
++    <app-header class="sun-movie__header"></app-header>
++    <app-main class="sun-movie__main"></app-main>
++    <app-footer class="sun-movie__footer"></app-footer>
++</div>
+Index: src/app/header/header.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/header/header.component.html	(revision efdf14d5e22acb55078e2216f2c5752a9a44dc44)
++++ src/app/header/header.component.html	(date 1579817430895)
+@@ -1,3 +1,3 @@
+-<p>
+-  header works!
+-</p>
++<a routerLink="/" routerLinkActive="active">Main</a>
++<a routerLink="/movies" routerLinkActive="active">Movies</a>
++<a routerLink="/people" routerLinkActive="active">People</a>

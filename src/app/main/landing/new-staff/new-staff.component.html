@@ -1,0 +1,26 @@
+<div class="new-staff">
+    <div class="new-staff__section">
+        <div class="new-staff__staff-list">
+            <div class="new-staff__staff" *ngFor="let tv of tvOnTheAirList$ | async">
+                <a href="">
+                    <img class="new-staff__staff-image" src="" alt="">
+                </a>
+                <div class="new-staff__staff-info">
+                    <img class="new-staff__staff-poster"
+                         [src]="'https://image.tmdb.org/t/p/original/' + tv.poster_path" [alt]="tv.original_name">
+                    <ul>
+                        <li class="new-staff__staff-header" [textContent]="tv.name"></li>
+                        <li class="new-staff__staff-description" [textContent]="tv.original_language"></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="new-staff__staff-list">
+            <div class="new-staff__staff">
+
+            </div>
+
+        </div>
+    </div>
+</div>

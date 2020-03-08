@@ -1,0 +1,40 @@
+@import "./src/styles";
+
+.header {
+    background-color: $black-08;
+    color: $white-ff;
+    position: relative;
+    display: flex;
+
+    &:after, &:before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: calc((100vw - #{$viewportWidth}) / 2);
+        background-color: $black-08;
+        top: 0;
+    }
+
+    &:after {
+        left: 100%;
+    }
+
+    &:before {
+        right: 100%;
+    }
+
+    &__link {
+        @include text-h3;
+        margin-right: 32px;
+    }
+
+    &__side {
+        &-left {
+
+        }
+
+        &-right {
+            margin-left: auto;
+        }
+    }
+}

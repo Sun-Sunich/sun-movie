@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "src/app/global-styles/colors";
+@import "src/app/global-styles/mixins";
+@import "src/app/global-styles/fonts";
+@import "src/app/global-styles/vars";
+
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: $black-00;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}

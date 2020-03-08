@@ -1,0 +1,64 @@
+$viewportWidth: auto;
+
+@mixin container {
+    margin: 0 auto;
+    padding: 0 24px;
+    @include viewportWidth;
+}
+
+@mixin viewportWidth {
+    width: auto;
+    @media (min-width: 576px) {
+        $viewportWidth: auto !global;
+        width: $viewportWidth;
+    }
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+        $viewportWidth: 576px !global;
+        width: $viewportWidth;
+    }
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+        $viewportWidth: 768px !global;
+        width: $viewportWidth;
+
+    }
+
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {
+        $viewportWidth: 992px !global;
+        width: $viewportWidth;
+
+    }
+
+    @media (min-width: 1400px) {
+        $viewportWidth: 1200px !global;
+        width: $viewportWidth;
+
+    }
+}
+
+@mixin font-light {
+    font-weight: 100;
+}
+
+@mixin font-normal {
+    font-weight: 400;
+
+}
+
+@mixin font-bold {
+    font-weight: 600;
+}
+
+@mixin text-p1 {
+    @include font-normal;
+    font: 16px/24px;
+}
+
+@mixin text-h3 {
+    @include font-bold;
+    font: 16px/22px;
+}
