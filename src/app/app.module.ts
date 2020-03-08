@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import {SunMovieComponent} from './sun-movie.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -12,6 +13,8 @@ import {LandingComponent} from './main/landing/landing.component';
 import {MovieComponent} from './main/movies/movie/movie.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { IconComponent } from './icon/icon.component';
+import {RestService} from './shared/services/rest.service';
+import { NewStaffComponent } from './main/landing/new-staff/new-staff.component';
 
 const appRoutes: Routes = [
     {
@@ -57,16 +60,18 @@ const appRoutes: Routes = [
         LandingComponent,
         MovieComponent,
         NotFoundComponent,
-        IconComponent
+        IconComponent,
+        NewStaffComponent
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         RouterModule.forRoot(
             appRoutes,
-            {enableTracing: true}
+            {enableTracing: false}
         )
     ],
-    providers: [],
+    providers: [RestService],
     bootstrap: [SunMovieComponent]
 })
 export class AppModule {
