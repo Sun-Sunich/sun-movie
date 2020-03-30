@@ -1,0 +1,25 @@
+@import "src/styles";
+
+.sun-switcher {
+    border-radius: 30px;
+    border: thin solid $blue-03;
+    background-color: $white-ff;
+    display: flex;
+    @include text-p1;
+
+    &__label {
+        border-radius: 30px;
+        padding: 4px 20px;
+        color: $black-00;
+        transition: all .3s ease;
+        cursor: pointer;
+
+        &._active {
+            color: $white-ff;
+            background-color: $blue-03;
+            transition: all .3s ease;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+}

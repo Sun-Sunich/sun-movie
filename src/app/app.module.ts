@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { IconComponent } from './icon/icon.component';
 import {RestService} from './shared/services/rest.service';
 import { NewStaffComponent } from './main/landing/new-staff/new-staff.component';
+import { SunSwitcherComponent } from './main/generic-components/sun-switcher/sun-switcher.component';
 
 const appRoutes: Routes = [
     {
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
         MovieComponent,
         NotFoundComponent,
         IconComponent,
-        NewStaffComponent
+        NewStaffComponent,
+        SunSwitcherComponent
     ],
     imports: [
         BrowserModule,

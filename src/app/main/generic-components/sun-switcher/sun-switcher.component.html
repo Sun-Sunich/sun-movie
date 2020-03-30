@@ -1,0 +1,8 @@
+<div class="sun-switcher">
+    <span class="sun-switcher__label"
+          *ngFor="let label of labelsArray"
+          [textContent]="label.label"
+          (click)="setActiveLabel($event, label)"
+          [ngClass]="{'_active' : label.active}">
+    </span>
+</div>
