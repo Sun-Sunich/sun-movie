@@ -1,8 +1,51 @@
-.new-staff{
-    &__staff{
-        &-poster{
-            width: 300px;
-            height: 400px;
+@import "./src/styles";
+
+.new-staff {
+    &__staff {
+        width: 50%;
+        position: relative;
+
+        &:first-child {
+            width: 100%;
+        }
+
+
+        &-poster {
+            width: 58px;
+            height: 87px;
+        }
+
+        &-list {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &-info {
+            display: flex;
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            color: $white-ff;
+        }
+
+        &-link {
+            display: block;
+        }
+
+        &-image {
+            width: 100%;
+        }
+    }
+
+    &__row {
+        display: flex;
+    }
+
+    &__section {
+        &-header {
+            display: flex;
+            align-items: center;
         }
     }
 }

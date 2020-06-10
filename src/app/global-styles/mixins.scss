@@ -55,10 +55,19 @@ $viewportWidth: auto;
 
 @mixin text-p1 {
     @include font-normal;
-    font: 16px/24px;
+    font-size: 16px;
+    line-height: 24px;
 }
+
+@mixin text-h2 {
+    @include font-bold;
+    font-size: 24px;
+    line-height: 32px;
+}
+
 
 @mixin text-h3 {
     @include font-bold;
-    font: 16px/22px;
+    font-size: 16px;
+    line-height: 22px;
 }

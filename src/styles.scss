@@ -14,3 +14,13 @@ a {
     color: inherit;
     text-decoration: inherit;
 }
+
+h3 {
+    margin: 0;
+    display: block;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: unset;
+    margin-inline-end:unset;
+    @include text-h3;
+}
