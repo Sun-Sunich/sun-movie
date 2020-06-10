@@ -14,9 +14,10 @@ export class SunSwitcherComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.setFirstLabelActive();
     }
 
-    setActiveLabel($event: MouseEvent, label: LabelsInterface) {
+    setActiveLabel(label?: LabelsInterface) {
         if (label.active) {
             return;
         } else {
@@ -26,5 +27,9 @@ export class SunSwitcherComponent implements OnInit {
         }
         label.active = true;
         this.atSwitch.emit(label);
+    }
+
+    private setFirstLabelActive() {
+        this.setActiveLabel(this.labelsArray[0]);
     }
 }
