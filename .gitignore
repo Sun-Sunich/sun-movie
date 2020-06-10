@@ -15,6 +15,21 @@ chrome-profiler-events.json
 speed-measure-plugin.json
 
 # IDEs and editors
+./codestyles
+./_windows
+./baseRefactoring.xml
+./colors.scheme.xml
+./.editorconfig
+./debugger.xml
+./editor.xml
+./find.xml
+./github.xml
+./ide.general.xml
+./markdown.xml
+./material_theme.xml
+./patches
+./project.default.xml
+./
 /.idea
 .project
 .classpath
