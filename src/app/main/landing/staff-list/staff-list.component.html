@@ -1,0 +1,22 @@
+<div class="staff-list" *ngIf="staff">
+    <div class="staff-list__section">
+        <div class="staff-list__section-header">
+            <h3>{{staff.title}}</h3>
+            <app-sun-switcher [labelsArray]="switcherLabels"
+                              (atSwitch)="switchTo($event)">
+            </app-sun-switcher>
+        </div>
+
+        <div class="staff-list__staff-list">
+
+            <div class="staff-list__staff"
+                 *ngFor="let movie of staff.movies">
+                <a href="#" class="staff-list__staff-link">
+                    <img class="staff-list__staff-image"
+                         [src]="'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path"
+                         [alt]="movie.original_name">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

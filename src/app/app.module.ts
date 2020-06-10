@@ -12,9 +12,9 @@ import {PeopleComponent} from './main/people/people.component';
 import {LandingComponent} from './main/landing/landing.component';
 import {MovieComponent} from './main/movies/movie/movie.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { IconComponent } from './icon/icon.component';
+import { IconComponent } from './main/generic-components/icon/icon.component';
 import {RestService} from './shared/services/rest.service';
-import { NewStaffComponent } from './main/landing/new-staff/new-staff.component';
+import { StaffListComponent } from './main/landing/staff-list/staff-list.component';
 import { SunSwitcherComponent } from './main/generic-components/sun-switcher/sun-switcher.component';
 
 const appRoutes: Routes = [
@@ -62,7 +62,7 @@ const appRoutes: Routes = [
         MovieComponent,
         NotFoundComponent,
         IconComponent,
-        NewStaffComponent,
+        StaffListComponent,
         SunSwitcherComponent
     ],
     imports: [
